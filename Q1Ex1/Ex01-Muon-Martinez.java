@@ -14,7 +14,7 @@ public class Ex01MuonMartinez {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    ppublic static void main(String[] args) {
         //declarating variables for CS Bakery
         String store1 = "CS Bakery";
         String bestseller1 = "Sticky Rice Cakes";
