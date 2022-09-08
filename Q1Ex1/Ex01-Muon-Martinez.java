@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ex01.muon.martinez;
+package ex01.muon.Q1Ex1;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Ex01MuonMartinez {
     /**
      * @param args the command line arguments
      */
-    ppublic static void main(String[] args) {
+    public static void main(String[] args) {
         //declarating variables for CS Bakery
         String store1 = "CS Bakery";
         String bestseller1 = "Sticky Rice Cakes";
