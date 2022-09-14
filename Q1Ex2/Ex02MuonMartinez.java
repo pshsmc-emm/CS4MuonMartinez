@@ -16,70 +16,103 @@ public class Ex02MuonMartinez {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner scan = new Scanner (System.in);
-        int lowerLimit = 0;
-        int upperLimit = 10;
-        int numOfGuesses = 3;
-        int range = 10;
-        //String retry = "y";
-      
+      //declaring variables
+      Scanner scan = new Scanner (System.in);
+      int lowerLimit = 0;
+      int upperLimit = 10;
+      int numOfGuesses = 3;
+      int range = 10;
+      String userInput = "userChoice";
+
+      while(!userInput.equalsIgnoreCase("end application")) {
+        String retry = "y";
+        
         //starting screen
-        System.out.println("Welcome to Higher or Lower! What will you do?");
+        System.out.print("Welcome to Higher or Lower! ");
+        System.out.println("What will you do?");
         System.out.println("- Start game");
         System.out.println("- Change settings");
         System.out.println("- End application");
-        String userInput = scan.nextLine();
-        
-        //do {
-        if(userInput.equalsIgnoreCase("start game")) {
-          int random = (int) Math.floor(Math.random()*range) + lowerLimit;  
+        userInput = scan.nextLine();
+        System.out.print("\n");
+
+        //cases for user input
+        switch(userInput) {
+          //to start the game  
+          case "start game":
+            while(retry.equalsIgnoreCase("y")) {
+              int random = (int) Math.floor(Math.random()*range) + lowerLimit;  
             
-          System.out.print("You have " + numOfGuesses + " guess(es) left. What is your guess? ");
-          int userGuess = scan.nextInt();
+              System.out.print("You have " + numOfGuesses);
+              System.out.print(" guess(es) left. What is your guess? ");
+              int userGuess = scan.nextInt();
+              scan.nextLine();
           
-          while(numOfGuesses > 1){
-              numOfGuesses -= 1;
+              for(int guessCount = numOfGuesses-1; guessCount > 0; guessCount--){
+                int guessesLeft = guessCount;
               
-              if(userGuess < random) {
-                  System.out.print("Guess higher! You have " + numOfGuesses +" guess(es) left. What is your guess? ");
+                if(userGuess < random) {
+                  System.out.print("Guess higher! You have " + guessesLeft);
+                  System.out.print(" guess(es) left. What is your guess? ");
                   userGuess = scan.nextInt();
-              } else if (userGuess > random) {
-                  System.out.print("Guess lower! You have " + numOfGuesses +" guess(es) left. What is your guess? ");
-                   userGuess = scan.nextInt();
+                  scan.nextLine();
+                } else if (userGuess > random) {
+                  System.out.print("Guess lower! You have " + guessesLeft);
+                  System.out.print(" guess(es) left. What is your guess? ");
+                  userGuess = scan.nextInt();
+                  scan.nextLine();
+                }
               }
-            }
           
-          if (userGuess == random){
+              if(userGuess == random){
                 System.out.println("You got it!");
-          } else {
+              } else {
                 System.out.println("You lost...");
-          }
-          
-          System.out.println("Play again (y/n)? ");
-          String retryGame = scan.nextLine();
-          
-          System.out.println("test");
-          
-          
-        } else if(userInput.equalsIgnoreCase("change settings")) {
-          System.out.println("What is the lower limit of the random number?");
-          System.out.println("What is the upper limit of the random number?");
-          System.out.println("How many guesses are allowed?");
+              }
 
-          System.out.print("Lower limit: ");
-          lowerLimit = scan.nextInt();
-          System.out.print("Upper limit: ");
-          upperLimit = scan.nextInt();
-          System.out.print("Guesses: ");
-          numOfGuesses = scan.nextInt();
-                  
+              do {
+                System.out.print("Play again (y/n)? ");
+                retry = scan.nextLine();
+                System.out.print("\n");
+              } while(!retry.equalsIgnoreCase("y") && !retry.equalsIgnoreCase("n"));
+            }
+            
+            break;
 
-        } else if(userInput.equalsIgnoreCase("end application")) {
-          System.out.println("Thank you for playing!");
-          
-        } else {
-          System.out.println("Please input an appropriate response.");
+          //to change the limits and amount of guesses
+          case "change settings":
+            System.out.println("What is the lower limit of the random number?");
+            System.out.println("What is the upper limit of the random number?");
+            System.out.println("How many guesses are allowed?");
+
+            System.out.print("Lower limit: ");
+            lowerLimit = scan.nextInt();
+            scan.nextLine();
+            
+            System.out.print("Upper limit: ");
+            upperLimit = scan.nextInt();
+            scan.nextLine();
+            
+            System.out.print("Guesses: ");
+            numOfGuesses = scan.nextInt();
+            scan.nextLine();
+
+            System.out.print("\n");
+
+            break;
+
+          //when the application is ended
+          case "end application":
+            System.out.println("Thank you for playing!");
+
+            break;
+
+          //other inputs  
+          default:
+            System.out.print("Please input an appropriate response.");
+
+            break;
         }
-   // } while(retry.equalsIgnoreCase("y"));
-  }
+      }
+    }  
 }
