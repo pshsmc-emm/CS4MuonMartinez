@@ -71,6 +71,6 @@ public class Main {
           System.out.print("\nPerform again (y/n)? ");
           repeat = scan.nextLine();
         } while(!repeat.equalsIgnoreCase("y") && !repeat.equalsIgnoreCase("n"));
-    }
+      }
     }
 }
