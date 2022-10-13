@@ -37,14 +37,16 @@ public class Store {
     //statement that there are only x items in the store)
     // get Item at index from itemList and add its cost to earnings
     // print statement indicating the sale
-    int totalItems = itemList.size() + 1;
-    if(itemList.size() < index ) {
-        System.out.println("There are only " + totalItems + "items in the store.");
-    } else {
-        earnings += itemList.get(index);
-        
-        System.out.println("The sale is " + earnings + ".");
-    }
+//    int totalItems = itemList.size() + 1;
+//    if(itemList.size() < index ) {
+//        System.out.println("There are only " + totalItems + "items in the store.");
+//    } else {
+//        earnings += itemList.getCost(index);
+//        
+//        System.out.println("The sale is " + earnings + ".");
+//    }
+
+    
   }
   public void sellItem(String name){
     // check if Item with given name is in the itemList (you will need to 
@@ -52,18 +54,41 @@ public class Store {
     //sell it)
     // get Item from itemList and add its cost to earnings
     // print statement indicating the sale
+    boolean found = false;
     
-    if(itemList) {
-        
-    } else {
-        System.out.println("The sale is " + earnings + ".");
+    for(Item t: itemList) {
+        if(t.getName().equals(name)) {
+            earnings += t.getCost();
+            found = true;
+            break;
+        }
     }
+    
+    if(!found) {
+        System.out.println("The store doesn't sell it.");
+    }    
   }
   public void sellItem(Item i){
     // check if Item i exists in the store (there is a method that can help 
     //with this) (if not, print statement that the store doesn't sell it)
     // get Item i from itemList and add its cost to earnings
     // print statement indicating the sale
+    boolean found = false;
+    
+    for(Item t: itemList) {
+        int index = 0;
+        if(t.getItem(index).equals(i)) {
+            earnings += t.getCost();
+            System.out.println(t.getType());
+            found = true;
+            break;
+        }
+        index++;
+    }
+    
+    if(!found) {
+        System.out.println("no");
+    }
   }
   public void addItem(Item i){
     // add Item i to store's itemList
@@ -71,7 +96,6 @@ public class Store {
   }
   public void filterType(String type){
     // loop over itemList and print all items with the specified type
-    
     for(Item t: itemList) {
         if(t.getType().equals(type)) {
             System.out.println(t.getType());
@@ -103,8 +127,9 @@ public class Store {
     
     for(Store k: storeList) {
         System.out.println("Name: " + k.name);
-        System.out.println("Earnings: " + Store.earnings);
     }
+    
+    System.out.println("Earnings: " + Store.earnings);
 
   }
 }
