@@ -37,23 +37,36 @@ public class Main {
             System.out.print("What will the trainer do? ");
             input = sc.nextLine();
             Monster selected = null;
-            if(input.equals("catch") || input.equals("release")){
-                System.out.print("Which monster? ");
-                String name = sc.nextLine();
-                selected = Monster.selectMonster(name);
+            try {
+                if(input.equals("catch") || input.equals("release")){
+                    System.out.print("Which monster? ");
+                    String name = sc.nextLine();
+                    selected = Monster.selectMonster(name);
+                }
             }
-            
+            catch(MonsterNotFoundException e){
+                System.out.println("That monster cannot be found.");
+            }
+                
             switch(input){
                 case "catch":
                     try {
                     player.sureCapture(selected);
                     }
                     catch(AlreadyCapturedException e) {
-                        System.out.println(name + " was already captured.");
+                        System.out.println("That monster has already captured.");
+                    }
+                    catch(NotInTeamException e){
+                        System.out.println("Monsters in team are already at their limit.");
                     }
                     break;
                 case "release":
-                    player.release(selected);
+                    try {
+                        player.release(selected);
+                    }
+                    catch(NotInTeamException  e) {
+                        System.out.println("Selected monster is not in the team.");
+                    }
                     break;
                 case "exit":
                     break;

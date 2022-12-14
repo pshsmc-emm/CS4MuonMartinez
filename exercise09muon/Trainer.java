@@ -43,7 +43,7 @@ public class Trainer {
     public void battle(Trainer t){
         activeMonster.attack(t.getActiveMonster());
     }
-    public void sureCapture(Monster m)extends AlreadyCapturedException {
+    public void sureCapture(Monster m)throws AlreadyCapturedException {
         if (team.contains(m)) { 
             team.add(m);
             System.out.printf("%s was successfully captured.", m.getName());
@@ -52,7 +52,7 @@ public class Trainer {
         }
        
     }
-    public void release(Monster m){
+    public void release(Monster m) throws NotInTeamException {
         team.remove(m);
         System.out.printf("%s was released from the team.", m.getName());
     }

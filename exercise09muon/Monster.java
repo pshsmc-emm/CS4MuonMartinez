@@ -129,7 +129,7 @@ public class Monster {
             if(m.getName().equals(n)){
                 return m;
             } else {
-            throw new MonsterNotFoundException();
+                throw new MonsterNotFoundException();
             }
         }
         
